@@ -1,0 +1,20 @@
+{
+  "name": "goodmangll-plugins",
+  "owner": {
+    "name": "Silas Guo"
+  },
+  "plugins": [
+    {
+      "name": "thinking-assistant",
+      "source": "./thinking-assistant",
+      "description": "提供协作思维和思维助手功能。协作思维：基于 Karpathy 'LLMs as Simulators' 理念，提供圆桌会议和头脑风暴等协作思维工具。思维助手：提供 AI 主动提问功能，支持费曼学习法、苏格拉底诘问法、第一性原理、水平思考法四种思维模型。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Silas Guo"
+      },
+      "repository": "git@github.com:goodmangll/plugins.git",
+      "license": "MIT",
+      "keywords": ["brainstorm", "roundtable", "collaborative-thinking", "multi-perspective", "role-simulation", "ask", "question", "active-questioning", "thinking-models", "feynman", "socratic", "first-principles", "lateral-thinking"]
+    }
+  ]
+}
