@@ -1,17 +1,17 @@
-# 思维助手插件 (thinking-assistant)
+# 思维助手插件 (mind-helper)
 
-提供协作思维和思维助手两个独立技能的 Claude Code 插件。
+提供多视角和主动提问两个独立技能的 Claude Code 插件。
 
 ## 概述
 
 本插件包含两个独立但互补的技能：
 
-1. **协作思维 (collaborative-thinking)** - 基于多角色模拟的协作思维工具
-2. **思维助手 (thinking-assistant)** - 基于 AI 主动提问的思维工具
+1. **多视角 (multi-view)** - 基于多角色模拟的协作思维工具
+2. **主动提问 (active-ask)** - 基于 AI 主动提问的思维工具
 
 ---
 
-## 技能一：协作思维 (collaborative-thinking)
+## 技能一：多视角 (multi-view)
 
 ### 设计理念
 
@@ -62,10 +62,22 @@
 /brainstorm 如何改进登录体验？
 ```
 
+#### 通过 Skill 名字直接触发（推荐）
+```
+/multi-view 让我们圆桌讨论一下这个产品战略
+/multi-view 帮我头脑风暴一下如何改进登录体验
+```
+
+### 安全约束
+
+**重要安全特性**：
+- 多视角技能使用 `general-purpose` 代理但严格限制为只读操作
+- 所有角色发言禁止使用 Write、Edit 工具
+- Bash 工具只限于只读操作（如 ls、cat、grep 等）
+- 确保角色只输出文本分析和观点，不会修改任何文件
+
 #### 自然对话触发
 ```
-让我们圆桌讨论一下这个产品战略
-帮我头脑风暴一下如何改进登录体验
 从多个角度分析这个问题
 模拟多个角色分析这个决策
 ```
@@ -79,7 +91,7 @@
 
 ---
 
-## 技能二：思维助手 (thinking-assistant)
+## 技能二：主动提问 (active-ask)
 
 ### 设计理念
 
@@ -113,10 +125,10 @@
 
 ### 使用方式
 
-#### 通过命令
+#### 通过 Skill 名字直接触发（推荐）
 ```
-/ask 帮我深入理解量子力学
-/ask 如何制定我的职业规划？
+/active-ask 帮我深入理解量子力学
+/active-ask 如何制定我的职业规划？
 ```
 
 #### 自然对话触发
@@ -145,8 +157,8 @@
     插件识别触发条件
          ↓
     选择对应的技能：
-    - collaborative-thinking（协作思维）
-    - thinking-assistant（思维助手）
+    - multi-view（多视角）
+    - active-ask（主动提问）
          ↓
     执行对应技能的核心逻辑
          ↓
@@ -156,13 +168,13 @@
 ### 目录结构
 
 ```
-thinking-assistant/
+mind-helper/
 ├── .claude-plugin/
 │   └── plugin.json              # 插件清单
 ├── skills/
-│   ├── collaborative-thinking/  # 协作思维技能
-│   │   ├── SKILL.md             # 协作思维核心协调器
-│   │   └── references/          # 协作思维参考文档
+│   ├── multi-view/              # 多视角技能
+│   │   ├── SKILL.md             # 多视角核心协调器
+│   │   └── references/          # 多视角参考文档
 │   │       ├── karpathy-principle.md
 │   │       ├── role-determination.md
 │   │       ├── participant-modes.md
@@ -171,10 +183,11 @@ thinking-assistant/
 │   │       ├── brainstorm-workflow.md
 │   │       ├── roundtable-output.md
 │   │       └── brainstorm-output.md
-│   └── thinking-assistant/      # 思维助手技能
-│       ├── SKILL.md             # 思维助手核心协调器
-│       └── references/          # 思维助手参考文档
-│           ├── thinking-models.md
+│   └── active-ask/              # 主动提问技能
+│       ├── SKILL.md             # 主动提问核心协调器
+│       └── references/          # 主动提问参考文档
+│           ├── thinking-models-definition.md
+│           ├── thinking-models-selection.md
 │           ├── active-questioning-workflow.md
 │           └── active-questioning-output.md
 ├── commands/
@@ -191,7 +204,7 @@ thinking-assistant/
 | 维度 | 优势 |
 |------|------|
 | 技能独立性 | 每个技能有独立的核心逻辑和触发条件 |
-| 清晰定位 | 协作思维 vs 思维助手，功能明确分离 |
+| 清晰定位 | 多视角 vs 主动提问，功能明确分离 |
 | 维护便利 | 技能独立维护，互不影响 |
 | 扩展性强 | 易于添加新的思维模型或协作方式 |
 | 符合 KISS 原则 | 简单直接的架构，无循环依赖 |
@@ -203,51 +216,51 @@ thinking-assistant/
 ### 方法 1：作为本地插件使用
 
 ```bash
-cd /home/linden/area/code/mine/plugins/thinking-assistant
+cd /home/linden/area/code/mine/plugins/mind-helper
 claude --plugin-dir .
 ```
 
 ### 方法 2：添加到 Claude Code 插件目录
 
-将 `thinking-assistant` 目录复制到你的 Claude Code 插件目录中。
+将 `mind-helper` 目录复制到你的 Claude Code 插件目录中。
 
 ---
 
 ## 使用示例
 
-### 协作思维示例
+### 多视角示例
 
 #### 圆桌会议
 ```
-用户: /roundtable 如何提高团队协作效率？
+用户: /multi-view 如何提高团队协作效率？
 
-效果: collaborative-thinking Skill 自动触发，
-     进入动态模式，由 SKILL.md 协调多角色讨论
+效果: multi-view Skill 自动触发，
+     进入圆桌会议模式，由 SKILL.md 协调多角色讨论
 ```
 
 #### 头脑风暴
 ```
-用户: 帮我头脑风暴一下如何改进登录体验
+用户: /multi-view 帮我头脑风暴一下如何改进登录体验
 
-效果: collaborative-thinking Skill 自动触发，
-     进入动态模式，由 SKILL.md 协调多角色产生创意
+效果: multi-view Skill 自动触发，
+     进入头脑风暴模式，由 SKILL.md 协调多角色产生创意
 ```
 
-### 思维助手示例
+### 主动提问示例
 
 #### 费曼学习法
 ```
-用户: /ask 帮我深入理解量子力学
+用户: /active-ask 帮我深入理解量子力学
 
-效果: thinking-assistant Skill 自动触发，
+效果: active-ask Skill 自动触发，
      自动选择费曼学习法思维模型，引导提问
 ```
 
 #### 苏格拉底诘问法
 ```
-用户: /ask 我应该如何选择职业方向？
+用户: /active-ask 我应该如何选择职业方向？
 
-效果: thinking-assistant Skill 自动触发，
+效果: active-ask Skill 自动触发，
      自动选择苏格拉底诘问法思维模型，引导思考
 ```
 
@@ -255,7 +268,7 @@ claude --plugin-dir .
 
 ## 两个技能的区别
 
-| 维度 | 协作思维 (collaborative-thinking) | 思维助手 (thinking-assistant) |
+| 维度 | 多视角 (multi-view) | 主动提问 (active-ask) |
 |------|--------------------------------|--------------------------------|
 | 核心理念 | 他们怎么说 | 我想要什么 |
 | 触发条件 | 多角色讨论、创意生成 | 深度思考、问题探索 |
@@ -263,3 +276,15 @@ claude --plugin-dir .
 | 模拟方式 | 模拟多个角色的观点 | 模拟特定思维模型 |
 | 适用场景 | 多视角分析、创意产生 | 深度学习、决策思考 |
 | 理论基础 | Karpathy "LLMs as Simulators" | 费曼学习法、苏格拉底诘问法等 |
+
+---
+
+## 常见问题
+
+### Q: 为什么推荐直接使用 Skill 名字触发？
+
+A: 在某些模型上，通过命令触发 Skill 可能会导致识别问题：
+- 模型可能将命令名错误识别为 skill 的一部分
+- 例如：`/ask` 可能被识别为调用 skill 名为 `ask` 而非 `active-ask`
+
+**推荐做法**：直接使用 skill 名字触发，例如 `/active-ask` 或 `/multi-view`

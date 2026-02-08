@@ -66,7 +66,7 @@ AI 主动提问按照以下五个阶段进行引导：
 ### 执行过程
 
 1. **匹配思维模型**：
-   - 根据 `thinking-models.md` 中的选择指南
+   - 根据 `thinking-models-selection.md` 中的选择指南
    - 匹配最合适的思维模型
    - 考虑是否需要模型组合
 
@@ -110,13 +110,13 @@ AI 主动提问按照以下五个阶段进行引导：
 
 ### 执行过程
 
-根据选定的思维模型，按照 `thinking-models.md` 中对应的**AI 实施策略**进行提问。
+根据选定的思维模型，按照 `thinking-models-definition.md` 中对应的**AI 实施策略**进行提问。
 
-> 各模型的具体实施策略详见 `thinking-models.md`：
-> - 费曼学习法：[执行流程](../thinking-models.md#费曼学习法-ai-实施策略)
-> - 苏格拉底诘问法：[执行流程](../thinking-models.md#苏格拉底诘问法-ai-实施策略)
-> - 第一性原理：[执行流程](../thinking-models.md#第一性原理-ai-实施策略)
-> - 水平思考法：[执行流程](../thinking-models.md#水平思考法-ai-实施策略)
+> 各模型的具体实施策略详见 `thinking-models-definition.md`：
+> - 费曼学习法：[执行流程](thinking-models-definition.md#费曼学习法-ai-实施策略)
+> - 苏格拉底诘问法：[执行流程](thinking-models-definition.md#苏格拉底诘问法-ai-实施策略)
+> - 第一性原理：[执行流程](thinking-models-definition.md#第一性原理-ai-实施策略)
+> - 水平思考法：[执行流程](thinking-models-definition.md#水平思考法-ai-实施策略)
 
 ---
 
