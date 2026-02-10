@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 项目概述
 
-Claude Code 插件集合仓库，包含 `mind-helper` 插件，提供多视角协作思维和 AI 主动提问功能。
+Claude Code 插件集合仓库，包含 `mind-helper` 插件，提供多视角协作思维和主动提问功能。
 
 ---
 
@@ -24,7 +24,7 @@ claude --plugin-dir .
 
 ### mind-helper 插件
 
-包含两个独立技能：`multi-view`（多视角协作思维）和 `active-ask`（AI 主动提问）。
+包含两个独立技能：`multi-view`（多视角协作思维）和 `active-ask`（主动提问）。
 
 **目录结构**：
 ```
@@ -41,8 +41,8 @@ mind-helper/
 │   ├── roundtable.md
 │   ├── brainstorm.md
 │   └── ask.md
-├── agents/
-│   └── readonly-participant.md         # 只读参与者代理（通过提示词实现只读约束）
+└── agents/
+    └── readonly-participant.md         # 只读参与者代理（通过提示词实现只读约束）
 ```
 
 ---
@@ -69,13 +69,45 @@ mind-helper/
    - 简洁列出所有需要阅读的 references 文档及其用途
    - 特别标注包含关键约束的文档
 
+4. **避免内容重复**：遵循 DRY（Don't Repeat Yourself）原则
+   - 明确文档职责边界：
+     - `workflow.md` 专注于流程描述（"怎么做"）
+     - `output.md` 专注于格式定义（"输出什么"）
+   - 建立单向引用机制：在 workflow 中引用 output，而非相互依赖
+   - 使用"引用"而非"复制"来避免重复维护问题
+
+5. **术语语义精确性**：
+   - 避免使用"AI"术语，因为执行者（agent）不知道自己是 AI
+   - 在不同上下文使用合适的中性术语：
+     - 总体描述："主动提问"（不带主语）
+     - 角色描述："引导者"（强调主动性）
+     - 系统架构："协调器"（强调管理角色）
+     - 具体操作：直接描述行为（如"会提出以下问题"）
+
+6. **文档引用格式统一**：
+   - 使用 Markdown 链接格式而非内联代码块格式进行文档引用
+   - 引用时应包含章节链接（如果有），提高跳转精度
+   - 保持与项目其他文档一致的引用风格
+
+   **格式规范**：
+   - 简单引用：`filename.md` → [filename.md](filename.md)
+   - 带章节引用：`filename.md` 中的"章节标题" → [filename.md#章节标题](filename.md#章节标题)
+   - 文档目录引用：`references/filename.md` → [filename.md](references/filename.md)
+   - 带章节的文档目录引用：`references/filename.md` 中的"章节标题" → [filename.md#章节标题](references/filename.md#章节标题)
+
    **示例**：
    ```markdown
    **执行前必须阅读**：
-   1. `references/thinking-models.md` - 思维模型
-   2. `references/active-questioning-workflow.md` - 执行流程（含关键约束）
-   3. `references/active-questioning-output.md` - 输出格式
+   1. [active-questioning-workflow.md](references/active-questioning-workflow.md) - 执行流程（含关键约束）
+   2. [active-questioning-output.md](references/active-questioning-output.md) - 输出格式
+   3. [thinking-models-definition.md](references/thinking-models-definition.md) - 思维模型定义
+   4. [thinking-models-selection.md](references/thinking-models-selection.md) - 思维模型选择指南
    ```
+
+7. **输出可读性优化**：
+   - 在给用户看的输出中使用适当的 emoji 增强视觉层次
+   - 选择与内容语义相符的 emoji，帮助用户快速识别内容类型
+   - 避免过度使用 emoji，保持内容的专业性和可读性
 
 ---
 
@@ -101,7 +133,7 @@ mind-helper/
 ### 工作流程
 
 - **圆桌会议**：十一阶段流程（材料收集→角色决定→议题澄清→角色发言→调研验证→观点交换→共识提炼→会议总结）
-- **头脑风暴**：十阶段流程（问题分析→材料收集→角色决定→协调创意生成→想法延伸组合→整理分类→调研验证→生成报告）
+- **头脑风暴**：八阶段流程（问题分析→材料收集→角色决定→协调创意生成→想法延伸组合→整理分类→调研验证→生成报告）
 
 ---
 

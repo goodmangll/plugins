@@ -179,17 +179,17 @@ mind-helper/
 │   │       ├── role-determination.md
 │   │       ├── participant-modes.md
 │   │       ├── coordination-strategies.md
-│   │       ├── roundtable-workflow.md
-│   │       ├── brainstorm-workflow.md
+│   │       ├── roundtable.md
+│   │       ├── brainstorm.md
 │   │       ├── roundtable-output.md
 │   │       └── brainstorm-output.md
 │   └── active-ask/              # 主动提问技能
 │       ├── SKILL.md             # 主动提问核心协调器
 │       └── references/          # 主动提问参考文档
-│           ├── thinking-models-definition.md
-│           ├── thinking-models-selection.md
-│           ├── active-questioning-workflow.md
-│           └── active-questioning-output.md
+│           ├── thinking-models.md
+│           ├── model-selection.md
+│           ├── workflow.md
+│           └── output.md
 ├── commands/
 │   ├── ask.md                   # AI 主动提问命令
 │   ├── brainstorm.md            # 头脑风暴命令
